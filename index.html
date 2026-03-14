@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colombo Transit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Colombo<span>Transit</span></div>
+        <div class="header-info">
+            <span id="current-time"></span>
+            <span class="status-indicator">● LIVE</span>
+        </div>
+    </header>
+
+    <main>
+        <aside class="sidebar left-sidebar">
+            <h2>Live Bus Feed</h2>
+            <div id="bus-list" class="scrollable-content">
+                <!-- Bus items will be injected here -->
+            </div>
+        </aside>
+
+        <section class="main-map">
+            <div class="map-container">
+                <div class="map-label">Colombo Street View</div>
+                <div id="visual-map">
+                    <!-- Map simulation -->
+                    <div class="road"></div>
+                    <div id="buses-on-map"></div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar right-sidebar">
+            <h2>Traffic Alerts</h2>
+            <div id="traffic-alerts" class="scrollable-content">
+                <!-- Alerts will be injected here -->
+            </div>
+            <div class="weather-widget">
+                <h3>Weather</h3>
+                <p id="weather-info">Loading...</p>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="legend">
+            <span class="legend-item"><span class="dot green"></span> On Time</span>
+            <span class="legend-item"><span class="dot amber"></span> Delayed</span>
+            <span class="legend-item"><span class="dot red"></span> High Congestion</span>
+        </div>
+        <p>&copy; 2024 Colombo Transit Authority</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
