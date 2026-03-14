@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colombo Transit Tracker</title>
+    <title>Colombo Transit | Real-Time Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <header>
-        <div class="logo">Colombo<span>Transit</span></div>
+        <div class="logo">COLOMBO<span>TRANSIT</span></div>
         <div class="header-info">
-            <span id="current-time"></span>
-            <span class="status-indicator">● LIVE</span>
+            <span id="current-time">00:00:00</span>
+            <span class="status-indicator">SYSTEM LIVE</span>
         </div>
     </header>
 
     <main>
         <aside class="sidebar left-sidebar">
-            <h2>Live Bus Feed</h2>
+            <h2>Live Bus Feed <span class="status-tag">Active</span></h2>
             <div id="bus-list" class="scrollable-content">
                 <!-- Bus items will be injected here -->
             </div>
@@ -25,7 +27,7 @@
 
         <section class="main-map">
             <div class="map-container">
-                <div class="map-label">Colombo Street View</div>
+                <div class="map-label">STREET VIEW: COLOMBO SECTOR A</div>
                 <div id="visual-map">
                     <!-- Map simulation -->
                     <div class="road"></div>
@@ -35,24 +37,24 @@
         </section>
 
         <aside class="sidebar right-sidebar">
-            <h2>Traffic Alerts</h2>
+            <h2>Network Alerts</h2>
             <div id="traffic-alerts" class="scrollable-content">
                 <!-- Alerts will be injected here -->
             </div>
             <div class="weather-widget">
-                <h3>Weather</h3>
-                <p id="weather-info">Loading...</p>
+                <h3>METEOROLOGICAL DATA</h3>
+                <p id="weather-info">Retrieving atmospheric conditions...</p>
             </div>
         </aside>
     </main>
 
     <footer>
         <div class="legend">
-            <span class="legend-item"><span class="dot green"></span> On Time</span>
-            <span class="legend-item"><span class="dot amber"></span> Delayed</span>
-            <span class="legend-item"><span class="dot red"></span> High Congestion</span>
+            <span class="legend-item"><span class="dot green"></span> ON TIME</span>
+            <span class="legend-item"><span class="dot amber"></span> DELAYED</span>
+            <span class="legend-item"><span class="dot red"></span> CONGESTION</span>
         </div>
-        <p>&copy; 2024 Colombo Transit Authority</p>
+        <p>CONTROL CENTER &copy; 2024 COLOMBO TRANSIT AUTHORITY</p>
     </footer>
 
     <script src="script.js"></script>

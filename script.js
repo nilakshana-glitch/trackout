@@ -1,9 +1,9 @@
 // Mock Data for Buses
 const buses = [
-    { id: 'C-102', route: 'Fort - Mt. Lavinia', status: 'On Time', delay: '0 min', position: 10, type: 'on-time' },
-    { id: 'C-45', route: 'Pettah - Kandy', status: 'Delayed', delay: '12 min', position: 35, type: 'delayed' },
-    { id: 'C-210', route: 'Borella - Bambalapitiya', status: 'On Time', delay: '2 min', position: 60, type: 'on-time' },
-    { id: 'C-88', route: 'Galle Face - Slave Island', status: 'Congestion', delay: '25 min', position: 85, type: 'delayed' }
+    { id: 'BUS-102', route: 'Fort - Mt. Lavinia', status: 'On Time', delay: '0 min', position: 15, type: 'on-time' },
+    { id: 'BUS-45', route: 'Pettah - Kandy', status: 'Delayed', delay: '12 min', position: 40, type: 'delayed' },
+    { id: 'BUS-210', route: 'Borella - Bamba', status: 'On Time', delay: '2 min', position: 65, type: 'on-time' },
+    { id: 'BUS-88', route: 'Galle Face - Slave Island', status: 'Delayed', delay: '25 min', position: 85, type: 'delayed' }
 ];
 
 // Mock Data for Alerts
@@ -22,7 +22,7 @@ const weatherInfo = document.getElementById('weather-info');
 // Update Current Time
 function updateTime() {
     const now = new Date();
-    timeDisplay.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    timeDisplay.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
 // Render Bus Feed
@@ -34,7 +34,7 @@ function renderBuses() {
         card.innerHTML = `
             <h3>${bus.id} <span class="status-tag">${bus.status}</span></h3>
             <p>Route: ${bus.route}</p>
-            <p>Delay: ${bus.delay}</p>
+            <p>Est. Delay: ${bus.delay}</p>
         `;
         busList.appendChild(card);
     });
@@ -62,7 +62,8 @@ function renderMap() {
         marker.className = 'bus-marker';
         marker.id = `marker-${bus.id}`;
         marker.style.left = `${bus.position}%`;
-        marker.style.top = '40%';
+        marker.style.top = '50%'; // Centered on road
+        marker.style.transform = 'translateY(-50%)';
         marker.textContent = bus.id.split('-')[1];
         mapBuses.appendChild(marker);
     });
@@ -72,14 +73,21 @@ function renderMap() {
 function animateBuses() {
     buses.forEach(bus => {
         // Increment position
-        bus.position += (Math.random() * 2);
-        if (bus.position > 100) bus.position = -5; // Reset
+        const speed = (Math.random() * 0.5) + 0.2;
+        bus.position += speed;
+        
+        if (bus.position > 100) {
+            bus.position = -5; // Reset
+        }
 
         const marker = document.getElementById(`marker-${bus.id}`);
         if (marker) {
             marker.style.left = `${bus.position}%`;
         }
     });
+    
+    // Request next frame
+    requestAnimationFrame(animateBuses);
 }
 
 // Initialize
@@ -91,11 +99,13 @@ function init() {
     renderAlerts();
     renderMap();
     
-    // Simulate live updates every 3 seconds
-    setInterval(animateBuses, 3000);
+    // Smooth movement with requestAnimationFrame
+    requestAnimationFrame(animateBuses);
     
     // Mock Weather
-    weatherInfo.textContent = '31°C, Humidity: 78%, Mostly Cloudy';
+    setTimeout(() => {
+        weatherInfo.textContent = '31°C | HUMIDITY: 78% | OVERCAST';
+    }, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', init);
